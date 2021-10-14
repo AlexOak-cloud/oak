@@ -1,40 +1,12 @@
 package Repository;
 
 import Entity.Person;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
+public interface Repository extends JpaRepository<Person, Integer> {
 
-public class Repository {
+    @Override
+    <S extends Person> S save(S entity);
 
-    private static ArrayList<Person> list = new ArrayList<>();
 
-    public static void add(Person person) {
-        list.add(person);
-    }
-
-    public static void delete(Person person) {
-        list.remove(person);
-    }
-
-    public static Person findById(int id) {
-        Person rtn = new Person();
-        for (Person tmp : list) {
-            if (tmp.getId() == id) {
-                rtn = tmp;
-            }
-        }
-        return rtn;
-    }
-
-    public static void deleteById(int id) {
-        list.removeIf(tmp -> tmp.getId() == id);
-    }
-
-    public static String showList(){
-        StringBuilder sb = new StringBuilder();
-        for(Person tmp: list){
-            sb.append(tmp).append("\n");
-        }
-        return sb.toString();
-    }
 }

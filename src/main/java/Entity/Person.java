@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Person {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private int id ;
+    private Integer id ;
     @Column(name = "name")
     private String name;
     @Column (name = "age")
@@ -37,5 +37,9 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, age, education);
+    }
+
+    public static Person create(int id,String name,int age,boolean education){
+        return new Person(id,name,age,education);
     }
 }
